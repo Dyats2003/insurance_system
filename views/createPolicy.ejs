@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Добавление полиса</title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+</head>
+<body>
+<h1 style="text-align: center; margin-top: 70px">Добавление полиса</h1>
+<form method="POST" style="text-align: center">
+    <label>Дата начала действия</label>
+    <input name="issue_date" /><br>
+    <label>Дата окончания действия</label>
+    <input name="expire_date" /><br>
+    <label>Дата подписания</label>
+    <input name="sign_date" /><br>
+    <label>Цель использования</label>
+    <input name="purpose" /><br>
+    <label>Используется c прицепом (true/false)</label>
+    <input name="has_trailer" /><br>
+    <label>Страховая выплата</label>
+    <input name="benefit" /><br>
+    <label>Код владельца</label>
+    <input name="owner_id" /><br>
+    <label>Код водителя</label>
+    <input name="driver_id" /><br>
+    <label>Код страхователя</label>
+    <input name="policy_holder_id" /><br>
+    <label>VIN</label>
+    <input name="vin" /><br>
+    <label>Код типа полиса</label>
+    <input name="policy_type_id" /><br>
+    <label>Код работника</label>
+    <input name="employee_id" /><br>
+    <input type="submit" value="Отправить" style="border-radius: 30px; color: blue"/>
+</form>
+<a href="/users/dashboard" style="text-decoration: none; color: blue"><button style="text-align: center;color: blue">К списку сотрудников</button></a>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style type="text/css">
+      .tabs {
+        width: 100%;
+        padding: 0px;
+        margin: 0 auto;
+      }
+
+      .tabs > input {
+        display: none;
+      }
+
+      .tabs > div {
+        display: none;
+        padding: 12px;
+        border: 1px solid #c0c0c0;
+        background: #ffffff;
+      }
+
+      .tabs > label {
+        display: inline-block;
+        padding: 7px;
+        margin: 0 -5px -1px 0;
+        text-align: center;
+        color: #666666;
+        border: 1px solid #c0c0c0;
+        background: #e0e0e0;
+        cursor: pointer;
+      }
+
+      .tabs > input:checked + label {
+        color: #000000;
+        border: 1px solid #c0c0c0;
+        border-bottom: 1px solid #ffffff;
+        background: #ffffff;
+      }
+
+      #tab_1:checked ~ #txt_1,
+      #tab_2:checked ~ #txt_2,
+      #tab_3:checked ~ #txt_3,
+      #tab_4:checked ~ #txt_4,
+      #tab_5:checked ~ #txt_5,
+      #tab_6:checked ~ #txt_6,
+      #tab_7:checked ~ #txt_7,
+      #tab_8:checked ~ #txt_8,
+      #tab_9:checked ~ #txt_9 {
+        display: block;
+      }
+
+      .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+      }
+
+      .table th {
+        font-weight: bold;
+        padding: 5px;
+        background: #efefef;
+        border: 1px solid #dddddd;
+      }
+
+      .table td {
+        border: 1px solid #dddddd;
+        padding: 5px;
+      }
+
+      th {
+        text-align: center;
+      }
+
+      td {
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    </style>
+    <title>Dashboard</title>
+  </head>
+  <body style="text-align: center">
+    <h2>База данных учёта страховых полисов</h2>
+    <div>
+      <a href="/users/logout">
+        <button style="border-radius: 30px; color: red">Выйти</button>
+      </a>
+      <% if(role == 'MANAGER') {%>
+      <a href="/employee">
+        <button style="border-radius: 30px; margin-left: 10px; color: blue">
+          Добавить сотрудника
+        </button>
+      </a>
+      <%} %> <% if(role == 'MANAGER') {%>
+      <a href="/report">
+        <button style="border-radius: 30px; margin-left: 10px; color: blue">
+          Создать отчёт
+        </button>
+      </a>
+      <%} %>
+    </div>
+
+    <h4>Hello, <%= user %></h4>
+    <h5>Role - <%= role %></h5>
+
+    <div class="tabs">
+      <% if(role == 'MANAGER') {%>
+      <input type="radio" name="inset" value="" id="tab_1" checked />
+      <label for="tab_1">Пользователи</label>
+      <%} %>
+      <input type="radio" name="inset" value="" id="tab_2" />
+      <label for="tab_2">Полисы</label>
+
+      <input type="radio" name="inset" value="" id="tab_3" />
+      <label for="tab_3">Машины</label>
+
+      <input type="radio" name="inset" value="" id="tab_4" />
+      <label for="tab_4">Владельцы</label>
+
+      <input type="radio" name="inset" value="" id="tab_5" />
+      <label for="tab_5">Допущены к управлению</label>
+      <input type="radio" name="inset" value="" id="tab_6" />
+      <label for="tab_6">Сотрудники</label>
+      <input type="radio" name="inset" value="" id="tab_7" />
+      <label for="tab_7">Страхователи</label>
+
+      <input type="radio" name="inset" value="" id="tab_8" />
+      <label for="tab_8">"Горячие" клиенты</label>
+
+      <div id="txt_1">
+        <h2 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Пользователи
+        </h2>
+        <table class="table" style="margin-top: 10px">
+          <tr>
+            <th>LOGIN</th>
+            <th>ROLE</th>
+            <th>Код сотрудника</th>
+          </tr>
+          <% users.forEach(function (us){ %>
+          <tr>
+            <td><%= us.login %></td>
+            <td><%= us.role %></td>
+            <td><%= us.employee_id %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_2">
+        <h1 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Полисы
+        </h1>
+        <a href="/createPolicy" style="color: blue"
+          ><button style="border-radius: 30px; color: blue">
+            Добавить полис
+          </button></a
+        >
+        <table class="table">
+          <tr>
+            <th>№</th>
+            <th>Дата начала действия</th>
+            <th>Дата окончания действия</th>
+            <th>Дата подписания</th>
+            <th>Цель</th>
+            <th>Используется с прицепом</th>
+            <th>Страховая выплата</th>
+            <th>Подтверждён</th>
+            <th>Код владельца</th>
+            <th>Код водителя</th>
+            <th>Код страхователя</th>
+            <th>VIN</th>
+            <th>Тип полиса</th>
+            <th>Работник</th>
+          </tr>
+          <% policies.forEach(function (policy){ %>
+          <tr>
+            <td><%= policy.policy_id %></td>
+            <td><%= policy.issue_date %></td>
+            <td><%= policy.expire_date %></td>
+            <td><%= policy.sign_date %></td>
+            <td><%= policy.purpose %></td>
+            <td><%= policy.has_trailer %></td>
+            <td><%= policy.benefit %></td>
+            <td><%= policy.is_approved %></td>
+            <td><%= policy.owner_id %></td>
+            <td><%= policy.driver_id %></td>
+            <td><%= policy.policy_holder_id %></td>
+            <td><%= policy.vin %></td>
+            <td><%= policy.policy_type_id %></td>
+            <td><%= policy.employee_id %></td>
+            <% if(role=='MANAGER') {%>
+            <td>
+              <form
+                action="/users/dashboard/<%= -(policy.policy_id) %>"
+                method="POST"
+                style="display: inline"
+              >
+                <input type="submit" value="УДАЛИТЬ" style="color: red" />
+              </form>
+            </td>
+            <%} %>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_3">
+        <h1 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Машины
+        </h1>
+        <table class="table">
+          <tr>
+            <th>VIN</th>
+            <th>Полное наименование</th>
+            <th>Дата производства</th>
+            <th>Страна производства</th>
+            <th>Номер двигателя</th>
+            <th>Мощность двигателя</th>
+            <th>Цвет</th>
+            <th>Вес</th>
+            <th>Код владельца</th>
+          </tr>
+          <% cars.forEach(function (car){ %>
+          <tr>
+            <td><%= car.vin %></td>
+            <td><%= car.model_full_name %></td>
+            <td><%= car.production_date %></td>
+            <td><%= car.production_country %></td>
+            <td><%= car.engine_number %></td>
+            <td><%= car.engine_power %></td>
+            <td><%= car.color %></td>
+            <td><%= car.weight %></td>
+            <td><%= car.owner_id %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_4">
+        <h1 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Владельцы
+        </h1>
+        <table class="table">
+          <tr>
+            <th>Код владельца</th>
+            <th>ФИО</th>
+            <th>Паспорт</th>
+            <th>Номер телефона</th>
+          </tr>
+          <% owners.forEach(function (owner){ %>
+          <tr>
+            <td><%= owner.owner_id %></td>
+            <td><%= owner.full_name %></td>
+            <td><%= owner.passport %></td>
+            <td><%= owner.phone_number %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_5">
+        <h1 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Допущены к управлению
+        </h1>
+        <table class="table">
+          <tr>
+            <th>Код водителя</th>
+            <th>ФИО</th>
+            <th>Паспорт</th>
+            <th>Номер телефона</th>
+            <th>Водительское удостоверение</th>
+          </tr>
+          <% drivers.forEach(function (driver){ %>
+          <tr>
+            <td><%= driver.driver_id %></td>
+            <td><%= driver.full_name %></td>
+            <td><%= driver.passport %></td>
+            <td><%= driver.phone_number %></td>
+            <td><%= driver.series_number_license %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_6">
+        <h2 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Сотрудники
+        </h2>
+        <table class="table" style="margin-top: 10px">
+          <tr>
+            <th>№</th>
+            <th>Имя</th>
+            <th>Паспорт</th>
+            <th>Email адрес</th>
+            <th>Телефон</th>
+            <th>Позиция</th>
+          </tr>
+          <% employees.forEach(function (emp){ %>
+          <tr>
+            <td><%= emp.employee_id %></td>
+            <td><%= emp.full_name %></td>
+            <td><%= emp.passport %></td>
+            <td><%= emp.email %></td>
+            <td><%= emp.phone_number %></td>
+            <td><%= emp.position_id %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_7">
+        <h1 style="align-items: center; margin-top: 10px; font-size: 45px">
+          Страхователи
+        </h1>
+        <table class="table">
+          <tr>
+            <th>Код страхователя</th>
+            <th>ФИО</th>
+            <th>Паспорт</th>
+            <th>Номер телефона</th>
+          </tr>
+          <% policy_holders.forEach(function (holder){ %>
+          <tr>
+            <td><%= holder.policy_holder_id %></td>
+            <td><%= holder.full_name %></td>
+            <td><%= holder.passport %></td>
+            <td><%= holder.phone_number %></td>
+            <% if(role=='MANAGER') {%>
+            <td>
+              <form
+                action="/users/dashboard/<%= holder.policy_holder_id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <input type="submit" value="УДАЛИТЬ" style="color: red" />
+              </form>
+            </td>
+            <%} %>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+      <div id="txt_8">
+        <h2 style="align-items: center; margin-top: 10px; font-size: 45px">
+          У этих полисов скоро закончится срок действия
+        </h2>
+        <h3 style="color: red">View</h3>
+        <table class="table">
+          <tr>
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Дата начала действия</th>
+            <th>Дата окончания действия</th>
+          </tr>
+          <% carsWithEnding.forEach(function (car) { %>
+          <tr>
+            <td><%= car.full_name %></td>
+            <td><%= car.phone_number %></td>
+            <td><%= car.issue_date %></td>
+            <td><%= car.expire_date %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

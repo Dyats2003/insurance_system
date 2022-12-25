@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Сформировать отчёт</title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+</head>
+<body>
+<h1 style="text-align: center; margin-top: 70px">Сформировать отчёт</h1>
+<form method="POST" style="text-align: center">
+    <label>Код сотрудника</label>
+    <input name="employee_id" class="field"/>
+    <label>Дата начала формирования</label>
+    <input name="start_date" /><br>
+    <label>Дата окончания формирования</label>
+    <input name="end_date" /><br>
+    <label>Путь сохранения</label>
+    <input name="path"/>
+    <br><input type="submit" value="Отправить" style="border-radius: 30px; color: blue"/></br>
+</form>
+<a href="/users/dashboard" style="text-decoration: none; color: blue"><button style="text-align: center;color: blue">К списку сотрудников</button></a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Добавление сотрудника</title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+</head>
+<body>
+<h1 style="text-align: center; margin-top: 70px">Добавление сотрудника</h1>
+<form method="POST" style="text-align: center">
+
+    <label>ФИО</label>
+    <input name="full_name" /><br>
+    <label>Паспорт</label>
+    <input name="passport" /><br>
+    <label>Номер телефона</label>
+    <input name="phone_number" /><br>
+    <label>Личный email</label>
+    <input name="email" /><br>
+    <label>Код позиции</label>
+    <input name="position_id" /><br>
+    <label>LOGIN</label>
+    <input name="login" /><br>
+    <label>Пароль</label>
+    <input name="password" /><br>
+    <label>ROLE</label>
+    <input name="role" /><br>
+    <input type="submit" value="Отправить" style="border-radius: 30px; color: blue"/>
+</form>
+<a href="/users/dashboard" style="text-decoration: none; color: blue"><button style="text-align: center;color: blue">К списку сотрудников</button></a>
+</body>
+</html>

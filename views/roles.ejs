@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Добавление пользователя</title>
+    <meta charset="utf-8" />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+</head>
+<body>
+<h1 style="text-align: center; margin-top: 70px">Выдача роли</h1>
+<form method="POST" style="text-align: center">
+    <label>ID пользователя</label>
+    <input name="id" class="field"/>
+    <label>Имя</label>
+    <input name="name" /><br>
+    <label>Роль</label>
+    <select name="role">
+        <option value="ADMIN" selected>ADMIN</option>
+        <option value="USER">USER</option>
+    </select><br>
+    <input type="submit" value="Отправить" style="border-radius: 30px; color: blue; margin-top: 10px"/>
+</form>
+<a href="/users/dashboard" style="text-decoration: none; color: blue"><button style="text-align: center;color: blue">На главную</button></a>
+</body>
+</html>
